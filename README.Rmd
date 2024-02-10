@@ -4,6 +4,7 @@ output:
   github_document: default
   tufte::tufte_html:
     css: style.css
+always_allow_html: true
 link-citations: yes
 ---
 
@@ -94,6 +95,7 @@ Once you are done setting up the project, you can now start working with the MET
 library(data.table)
 library(dtplyr)
 library(dplyr)
+library(tidyr)
 library(mgcv)
 library(leaflet)
 library(ggplot2)
@@ -103,7 +105,7 @@ library(mgcv)
 ```
 
 
-```{r, eval=FALSE}
+```{r}
 fn <- "https://raw.githubusercontent.com/JSC370/JSC370-2024/main/data/met_all_2023.gz"
 if (!file.exists("met_all_2023.gz"))
   download.file(fn, destfile = "met_all_2023.gz")
@@ -112,7 +114,7 @@ met <- data.table::fread("met_all_2023.gz")
 
 2. Load the met data from https://github.com/JSC370/JSC370-2024/main/data/met_all_2023.gz or  (Use https://raw.githubusercontent.com/JSC370/JSC370-2024/main/data/met_all_2023.gz to download programmatically), and also the station data. For the latter, you can use the code we used during lecture to pre-process the stations data:
  
-```{r stations-data, eval = FALSE}
+```{r}
 # Download the data
 stations <- fread("ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv")
 stations[, USAF := as.integer(USAF)]
